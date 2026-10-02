@@ -1,0 +1,131 @@
+@layer theme, base, mui, components, utilities;
+@import 'tailwindcss';
+
+/*
+ * Coinbase product language: white canvas, near-black type, blue #0052FF.
+ * Gain and loss stay green and red so they are not the same color as actions.
+ */
+:root,
+html[data-theme='dark'] {
+  --background: #0a0b0d;
+  --surface: #141518;
+  --surface-raised: #1e2025;
+  --border: #2c2f36;
+  --foreground: #ffffff;
+  --muted: #a3a7b0;
+  --accent: #0052ff;
+  --accent-soft: #122044;
+  --gain: #27ad75;
+  --loss: #f05d6a;
+  color-scheme: dark;
+}
+
+html[data-theme='light'] {
+  --background: #f7f8fa;
+  --surface: #ffffff;
+  --surface-raised: #f0f2f5;
+  --border: #e7ebef;
+  --foreground: #0a0b0d;
+  --muted: #5b616e;
+  --accent: #0052ff;
+  --accent-soft: #eef3ff;
+  --gain: #098551;
+  --loss: #cf202f;
+  color-scheme: light;
+}
+
+:root {
+  --font-sans: var(--font-inter), Inter, sans-serif;
+}
+
+html[data-locale='zh'] {
+  --font-sans: var(--font-sc), var(--font-inter), sans-serif;
+}
+html[data-locale='ja'] {
+  --font-sans: var(--font-jp), var(--font-inter), sans-serif;
+}
+html[data-locale='ko'] {
+  --font-sans: var(--font-kr), var(--font-inter), sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-border: var(--border);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-gain: var(--gain);
+  --color-loss: var(--loss);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  transition: background-color 0.28s ease, color 0.28s ease;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Inter, sans-serif;
+  transition: background-color 0.28s ease, color 0.28s ease;
+}
+
+.tabular {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.display-num {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise > * {
+  animation: rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.rise > *:nth-child(2) {
+  animation-delay: 0.06s;
+}
+.rise > *:nth-child(3) {
+  animation-delay: 0.1s;
+}
+.rise > *:nth-child(4) {
+  animation-delay: 0.14s;
+}
+.rise > *:nth-child(5) {
+  animation-delay: 0.18s;
+}
+.rise > *:nth-child(6) {
+  animation-delay: 0.22s;
+}
+
+:where(a, button):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
